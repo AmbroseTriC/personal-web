@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jiayi (Ambrose) Wang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-ink: #1a1a1a;
+      --color-paper: #f5f0e8;
+      --color-accent: #c45d3e;
+      --color-sage: #7a8b6f;
+      --color-warm-gray: #6b6560;
+      --color-rule: #c8c0b4;
+      --color-paper-dark: #ebe4d8;
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'DM Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-paper);
+      color: var(--color-ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* --- Utility --- */
+    .section-label {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-warm-gray);
+      margin-bottom: 2rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--color-rule);
+      margin: 0;
+    }
+
+    a {
+      color: var(--color-accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s ease;
+    }
+
+    a:hover,
+    a:focus {
+      border-bottom-color: var(--color-accent);
+    }
+
+    a:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+    }
+
+    /* --- Page wrapper --- */
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* --- Header / Hero --- */
+    header {
+      padding: 6rem 0 3rem;
+    }
+
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--color-ink);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--color-accent);
+    }
+
+    .hero-tagline {
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--color-warm-gray);
+      max-width: 480px;
+      line-height: 1.5;
+    }
+
+    .hero-rule {
+      margin-top: 3rem;
+    }
+
+    /* --- Nav --- */
+    nav {
+      padding: 1.25rem 0;
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-ink);
+      border-bottom: none;
+    }
+
+    nav a:hover {
+      color: var(--color-accent);
+      border-bottom: none;
+    }
+
+    .nav-rule {
+      margin-bottom: 4rem;
+    }
+
+    /* --- About --- */
+    .about {
+      padding-bottom: 5rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .about-text {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--color-ink);
+    }
+
+    .about-text p + p {
+      margin-top: 1rem;
+    }
+
+    .about-aside {
+      padding-top: 0.3rem;
+    }
+
+    .about-aside dl {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.5rem 1.5rem;
+    }
+
+    .about-aside dt {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-warm-gray);
+      padding-top: 0.15rem;
+    }
+
+    .about-aside dd {
+      font-size: 0.95rem;
+      color: var(--color-ink);
+    }
+
+    /* --- Experience --- */
+    .experience {
+      padding-bottom: 5rem;
+    }
+
+    .experience-item {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 2rem;
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--color-rule);
+    }
+
+    .experience-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .exp-meta {
+      padding-top: 0.15rem;
+    }
+
+    .exp-company {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      line-height: 1.3;
+      margin-bottom: 0.35rem;
+    }
+
+    .exp-role {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--color-accent);
+      margin-bottom: 0.3rem;
+    }
+
+    .exp-date {
+      font-size: 0.8rem;
+      color: var(--color-warm-gray);
+    }
+
+    .exp-location {
+      font-size: 0.8rem;
+      color: var(--color-warm-gray);
+    }
+
+    .exp-description {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #3a3632;
+    }
+
+    .exp-description li {
+      margin-bottom: 0.5rem;
+      padding-left: 0.25rem;
+    }
+
+    .exp-description ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .exp-description li::before {
+      content: "\2014\00a0";
+      color: var(--color-rule);
+    }
+
+    /* --- Education --- */
+    .education {
+      padding-bottom: 5rem;
+    }
+
+    .edu-item {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-top: 1px solid var(--color-rule);
+    }
+
+    .edu-institution {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      line-height: 1.3;
+      margin-bottom: 0.25rem;
+    }
+
+    .edu-degree {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--color-accent);
+      margin-bottom: 0.2rem;
+    }
+
+    .edu-date {
+      font-size: 0.8rem;
+      color: var(--color-warm-gray);
+    }
+
+    .edu-location {
+      font-size: 0.8rem;
+      color: var(--color-warm-gray);
+    }
+
+    .edu-details {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #3a3632;
+    }
+
+    .edu-details ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .edu-details li {
+      margin-bottom: 0.4rem;
+      padding-left: 0.25rem;
+    }
+
+    .edu-details li::before {
+      content: "\2014\00a0";
+      color: var(--color-rule);
+    }
+
+    .edu-highlight {
+      font-weight: 700;
+    }
+
+    /* --- Contact / Footer --- */
+    footer {
+      border-top: 1px solid var(--color-rule);
+      padding: 4rem 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .footer-left .section-label {
+      margin-bottom: 1rem;
+    }
+
+    .footer-cta {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.15;
+      max-width: 400px;
+    }
+
+    .footer-links {
+      text-align: right;
+      padding-top: 2.5rem;
+    }
+
+    .footer-links a {
+      display: block;
+      font-size: 0.95rem;
+      margin-bottom: 0.75rem;
+      color: var(--color-ink);
+    }
+
+    .footer-links a:hover {
+      color: var(--color-accent);
+    }
+
+    .footer-bottom {
+      grid-column: 1 / -1;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--color-rule);
+      font-size: 0.75rem;
+      color: var(--color-warm-gray);
+    }
+
+    /* --- Section spacing --- */
+    .section-gap {
+      padding-top: 4rem;
+    }
+
+    /* --- Pull quote style for the about --- */
+    .pull-stat {
+      font-family: var(--font-display);
+      font-size: 2.6rem;
+      line-height: 1;
+      color: var(--color-accent);
+      margin-bottom: 0.25rem;
+    }
+
+    .pull-stat-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-warm-gray);
+    }
+
+    .stats-row {
+      display: flex;
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      .page {
+        padding: 0 1.25rem;
+      }
+
+      header {
+        padding: 4rem 0 2rem;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .about-aside {
+        order: -1;
+      }
+
+      .experience-item,
+      .edu-item {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+
+      footer {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-links {
+        text-align: left;
+        padding-top: 0;
+      }
+
+      .stats-row {
+        gap: 2rem;
+      }
+
+      nav {
+        gap: 1.25rem;
+      }
+
+      .nav-rule {
+        margin-bottom: 3rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 3rem 0 1.5rem;
+      }
+
+      .hero-name {
+        font-size: 2.5rem;
+      }
+
+      .stats-row {
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+
+      .pull-stat {
+        font-size: 2rem;
+      }
+
+      footer {
+        padding: 3rem 0;
+      }
+
+      .footer-cta {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Header / Hero -->
+    <header>
+      <h1 class="hero-name">Jiayi <em>(Ambrose)</em><br>Wang</h1>
+      <p class="hero-tagline">Economics at University College London. First-class honours, top 4% of cohort. Research and finance experience across London, Shanghai, and Beijing.</p>
+      <hr class="hero-rule">
+    </header>
+
+    <!-- Navigation -->
+    <nav aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <hr class="nav-rule">
+
+    <!-- About -->
+    <main>
+      <section class="about section-gap" id="about">
+        <p class="section-label">About</p>
+        <div class="about-grid">
+          <div class="about-aside">
+            <dl>
+              <dt>Based in</dt>
+              <dd>London, GB</dd>
+              <dt>Languages</dt>
+              <dd>English, Mandarin</dd>
+              <dt>Programming</dt>
+              <dd>Python, C, LaTeX</dd>
+              <dt>Tools</dt>
+              <dd>Stata, Excel, Bloomberg</dd>
+            </dl>
+            <div class="stats-row">
+              <div>
+                <div class="pull-stat">79.1%</div>
+                <div class="pull-stat-label">Overall grade</div>
+              </div>
+              <div>
+                <div class="pull-stat">333</div>
+                <div class="pull-stat-label">GRE score</div>
+              </div>
+            </div>
+          </div>
+          <div class="about-text">
+            <p>London-based economics undergraduate at UCL, graduating with first-class honours in the top 4% of the Economics cohort. Background spans equity research at China International Capital Corporation, audit work at Moore Stephens Da-Hua, and founding a content operation that reached over 10 million views.</p>
+            <p>Comfortable working across quantitative analysis, financial modelling, and data workflows&mdash;with hands-on experience in Python, Stata, and terminal-based data platforms including Wind, Refinitiv, and Bloomberg.</p>
+          </div>
+        </div>
+      </section>
+
+      <hr>
+
+      <!-- Experience -->
+      <section class="experience section-gap" id="experience">
+        <p class="section-label">Experience</p>
+
+        <article class="experience-item">
+          <div class="exp-meta">
+            <h3 class="exp-company">China International Capital Corporation (CICC)</h3>
+            <p class="exp-role">Equity Research Intern</p>
+            <p class="exp-date">Jun. 2025 &ndash; Sept. 2025</p>
+            <p class="exp-location">Shanghai, CN</p>
+          </div>
+          <div class="exp-description">
+            <ul>
+              <li>Performed quantitative analysis and compiled market intelligence reports covering oil &amp; gas and petrochemical markets.</li>
+              <li>Maintained market databases with 400+ indicators&mdash;prices, supply/demand, inventories, refinery runs, exports, crack spreads, rig counts; remapped discontinued &amp; rebased series while creating standardised charting output.</li>
+              <li>Updated and audited coverage financial models and management guidance; rolled forward operating drivers and valuation sheets (DCF/WACC, comps, sensitivities) using structured Excel drivers.</li>
+              <li>Led data workstreams for industry/thematic reports: acquired, cleaned, and reconciled datasets from Wind, Refinitiv, Bloomberg, and public sources; produced analytical charts/tables; applied Python for time-series extrapolation (ARIMAX, POOS Validation) and automating manual processes.</li>
+              <li>Supported research output and client communications by attending earnings calls and analyst&ndash;management meetings; produced verbatim notes, distilled catalysts/risks, drafted post-meeting summaries, and fulfilled rapid ad-hoc data requests.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="experience-item">
+          <div class="exp-meta">
+            <h3 class="exp-company">Moore Stephens Da-Hua CPAs, Liaoning Branch</h3>
+            <p class="exp-role">Audit Intern</p>
+            <p class="exp-date">Jul. 2024 &ndash; Aug. 2024</p>
+            <p class="exp-location">Liaoning, CN</p>
+          </div>
+          <div class="exp-description">
+            <ul>
+              <li>Compiled, validated, and structured audit working papers for Chinese state-owned enterprises.</li>
+              <li>Drafted comprehensive reports summarising legal proceedings relevant to audited entities.</li>
+              <li>Reviewed accounting certificates and vouchers to ensure compliance with regulatory standards.</li>
+              <li>Evaluated annual financial reports to verify accuracy of material figures and disclosures.</li>
+              <li>Contributed to preliminary data testing and risk assessment in line with audit protocols.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="experience-item">
+          <div class="exp-meta">
+            <h3 class="exp-company">TeamTrinity</h3>
+            <p class="exp-role">Founder and Manager</p>
+            <p class="exp-date">Jan. 2018 &ndash; Sept. 2022</p>
+            <p class="exp-location">Beijing, CN</p>
+          </div>
+          <div class="exp-description">
+            <ul>
+              <li>Established a decentralised production pipeline that generated over 500 videos, surpassing 10 million total views.</li>
+              <li>Coordinated a team of 50+ translators, editors, and post-production specialists to produce high-quality content.</li>
+              <li>Leveraged audience feedback and analytics to refine content strategies and bolster viewer engagement.</li>
+            </ul>
+          </div>
+        </article>
+      </section>
+
+      <hr>
+
+      <!-- Education -->
+      <section class="education section-gap" id="education">
+        <p class="section-label">Education</p>
+
+        <article class="edu-item">
+          <div>
+            <h3 class="edu-institution">University College London</h3>
+            <p class="edu-degree">BSc Economics</p>
+            <p class="edu-date">Sept. 2023 &ndash; Present</p>
+            <p class="edu-location">London, GB</p>
+          </div>
+          <div class="edu-details">
+            <ul>
+              <li>Overall grade: <span class="edu-highlight">79.1%</span> (First-class Honours, top 4% of Economics cohort).</li>
+              <li>Key modules: Econometrics (77.6%), Microeconomics (78.2%), Economics of Finance (84.3%), Statistics (84.0%), Mathematics for Economics (82.9%).</li>
+              <li>GRE score of 333; adept at applied econometrics, quantitative analysis, and data interpretation.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="edu-item">
+          <div>
+            <h3 class="edu-institution">Beijing AIDI International School</h3>
+            <p class="edu-degree">IGCSE &amp; GCE A-Level</p>
+            <p class="edu-date">Sept. 2018 &ndash; Jun. 2022</p>
+            <p class="edu-location">Beijing, CN</p>
+          </div>
+          <div class="edu-details">
+            <ul>
+              <li>A-Level: Mathematics (A*), Further Mathematics (A*), Economics (A*), Chemistry (A*).</li>
+              <li>Valedictorian of the Class of 2023; recognised as a top-10 student throughout.</li>
+              <li>Distinction in Australian Chemistry &amp; Physics Olympiads (2022); Silver Prize in UK Chemistry Olympiad (2022).</li>
+            </ul>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <!-- Contact / Footer -->
+    <footer id="contact">
+      <div class="footer-left">
+        <p class="section-label">Get in touch</p>
+        <p class="footer-cta">Open to research and industry opportunities.</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:ambrose.wang04@outlook.com">ambrose.wang04@outlook.com</a>
+        <a href="tel:+4407436637461">+44 07436637461</a>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Jiayi (Ambrose) Wang
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
