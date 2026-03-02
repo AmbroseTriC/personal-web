@@ -62,6 +62,7 @@
   }
   </script>
 
+  <script>document.documentElement.classList.add('js')</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
@@ -558,6 +559,79 @@
       .pull-stat { color: var(--color-ink); }
       footer { page-break-before: avoid; }
     }
+
+    /* --- Custom text selection --- */
+    ::selection {
+      background: var(--color-accent);
+      color: var(--color-paper);
+    }
+
+    /* --- Paper grain texture --- */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
+      z-index: 9999;
+    }
+
+    /* --- Page entrance --- */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-name { animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
+    .hero-tagline { animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both; }
+    .hero-rule { animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both; }
+
+    /* --- Scroll reveal --- */
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .js .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* --- HR draw animation --- */
+    .js .section-rule {
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .js .section-rule.visible {
+      transform: scaleX(1);
+    }
+
+    /* --- Experience hover lift (desktop only) --- */
+    @media (min-width: 769px) {
+      .experience-item {
+        transition: box-shadow 0.3s ease;
+      }
+      .experience-item:hover {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      }
+    }
+
+    /* --- Reduced motion --- */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .section-rule { transform: scaleX(1) !important; }
+    }
   </style>
 </head>
 <body>
@@ -582,8 +656,8 @@
     <!-- About -->
     <main>
       <section class="about section-gap" id="about">
-        <h2 class="section-label">About</h2>
-        <div class="about-grid">
+        <h2 class="section-label reveal">About</h2>
+        <div class="about-grid reveal">
           <div class="about-text">
             <img
               src="jiayi-ambrose-wang.jpeg"
@@ -608,11 +682,11 @@
             </dl>
             <div class="stats-row">
               <div>
-                <div class="pull-stat">79.1%</div>
+                <div class="pull-stat" data-target="79.1" data-suffix="%">79.1%</div>
                 <div class="pull-stat-label">Overall grade</div>
               </div>
               <div>
-                <div class="pull-stat">333</div>
+                <div class="pull-stat" data-target="333" data-suffix="">333</div>
                 <div class="pull-stat-label">GRE score</div>
               </div>
             </div>
@@ -620,13 +694,13 @@
         </div>
       </section>
 
-      <hr>
+      <hr class="section-rule">
 
       <!-- Experience -->
       <section class="experience section-gap" id="experience">
-        <h2 class="section-label">Experience</h2>
+        <h2 class="section-label reveal">Experience</h2>
 
-        <article class="experience-item">
+        <article class="experience-item reveal">
           <div class="exp-meta">
             <h3 class="exp-company">China International Capital Corporation (CICC)</h3>
             <p class="exp-role">Equity Research Intern</p>
@@ -644,7 +718,7 @@
           </div>
         </article>
 
-        <article class="experience-item">
+        <article class="experience-item reveal">
           <div class="exp-meta">
             <h3 class="exp-company">Moore Stephens Da-Hua CPAs, Liaoning Branch</h3>
             <p class="exp-role">Audit Intern</p>
@@ -662,7 +736,7 @@
           </div>
         </article>
 
-        <article class="experience-item">
+        <article class="experience-item reveal">
           <div class="exp-meta">
             <h3 class="exp-company">TeamTrinity</h3>
             <p class="exp-role">Founder and Manager</p>
@@ -679,13 +753,13 @@
         </article>
       </section>
 
-      <hr>
+      <hr class="section-rule">
 
       <!-- Education -->
       <section class="education section-gap" id="education">
-        <h2 class="section-label">Education</h2>
+        <h2 class="section-label reveal">Education</h2>
 
-        <article class="edu-item">
+        <article class="edu-item reveal">
           <div>
             <h3 class="edu-institution">University College London</h3>
             <p class="edu-degree">BSc Economics</p>
@@ -701,7 +775,7 @@
           </div>
         </article>
 
-        <article class="edu-item">
+        <article class="edu-item reveal">
           <div>
             <h3 class="edu-institution">Beijing AIDI International School</h3>
             <p class="edu-degree">IGCSE &amp; GCE A-Level</p>
@@ -721,11 +795,11 @@
 
     <!-- Contact / Footer -->
     <footer id="contact">
-      <div class="footer-left">
+      <div class="footer-left reveal">
         <p class="section-label">Get in touch</p>
         <p class="footer-cta">Open to research and industry opportunities.</p>
       </div>
-      <div class="footer-links">
+      <div class="footer-links reveal">
         <a href="mailto:ambrose.wang04@outlook.com">ambrose.wang04@outlook.com</a>
         <a href="tel:+447436637461">+44 7436 637 461</a>
         <a href="https://www.linkedin.com/in/jw0314/" target="_blank" rel="noopener noreferrer" class="social-link"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
@@ -736,5 +810,51 @@
     </footer>
 
   </div>
+
+  <script>
+    // Scroll reveal observer
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal, .section-rule').forEach(el => revealObs.observe(el));
+
+    // Animated stat counters
+    function animateCount(el) {
+      const target = parseFloat(el.dataset.target);
+      const suffix = el.dataset.suffix || '';
+      const hasDecimal = String(target).includes('.');
+      const duration = 1200;
+      const start = performance.now();
+
+      function tick(now) {
+        const t = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = (hasDecimal ? (eased * target).toFixed(1) : Math.round(eased * target)) + suffix;
+        if (t < 1) requestAnimationFrame(tick);
+      }
+
+      requestAnimationFrame(tick);
+    }
+
+    const statObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          animateCount(e.target);
+          statObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.pull-stat[data-target]').forEach(el => {
+      el.textContent = '0' + (el.dataset.suffix || '');
+      statObs.observe(el);
+    });
+  </script>
 </body>
 </html>
