@@ -17,9 +17,14 @@
   <meta property="og:url" content="https://www.ambrosewang.com/">
   <meta property="og:site_name" content="Ambrose Wang">
   <meta property="og:locale" content="en_GB">
+  <meta property="og:image" content="https://www.ambrosewang.com/jiayi-ambrose-wang.jpeg">
+  <meta property="og:image:alt" content="Jiayi (Ambrose) Wang — portrait photo">
+  <meta property="og:image:width" content="800">
+  <meta property="og:image:height" content="800">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://www.ambrosewang.com/jiayi-ambrose-wang.jpeg">
   <meta name="twitter:title" content="Jiayi (Ambrose) Wang | Economics at UCL">
   <meta name="twitter:description" content="Economics graduate from UCL with first-class honours (top 4%). Research and finance experience across London, Shanghai, and Beijing.">
 
@@ -48,6 +53,8 @@
           }
         ],
         "knowsLanguage": ["English", "Mandarin"],
+        "image": "https://www.ambrosewang.com/jiayi-ambrose-wang.jpeg",
+        "alternateName": ["Ambrose Wang", "王嘉逸", "Jiayi Wang"],
         "knowsAbout": ["Economics", "Equity Research", "Econometrics", "Financial Modelling", "Python", "Stata"]
       }
     ]
@@ -203,6 +210,15 @@
       grid-template-columns: 1.6fr 1fr;
       gap: 3rem;
       align-items: start;
+    }
+
+    .about-photo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1.5rem;
+      border: 3px solid var(--color-rule);
     }
 
     .about-text {
@@ -558,6 +574,13 @@
         <h2 class="section-label">About</h2>
         <div class="about-grid">
           <div class="about-text">
+            <img
+              src="jiayi-ambrose-wang.jpeg"
+              alt="Jiayi (Ambrose) Wang — 王嘉逸 — Economics graduate from University College London"
+              width="220"
+              height="220"
+              class="about-photo"
+            >
             <p>London-based economics undergraduate at UCL, graduating with first-class honours in the top 4% of the Economics cohort. Background spans equity research at China International Capital Corporation, audit work at Moore Stephens Da-Hua, and founding a content operation that reached over 10 million views.</p>
             <p>Comfortable working across quantitative analysis, financial modelling, and data workflows&mdash;with hands-on experience in Python, Stata, and terminal-based data platforms including Wind, Refinitiv, and Bloomberg.</p>
           </div>
