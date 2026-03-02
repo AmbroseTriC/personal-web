@@ -16,6 +16,7 @@
       --color-warm-gray: #6b6560;
       --color-rule: #c8c0b4;
       --color-paper-dark: #ebe4d8;
+      --color-ink-soft: #3a3632;
       --font-display: 'DM Serif Display', Georgia, serif;
       --font-body: 'DM Sans', 'Helvetica Neue', sans-serif;
     }
@@ -92,7 +93,7 @@
       line-height: 0.95;
       letter-spacing: -0.02em;
       color: var(--color-ink);
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
     }
 
     .hero-name em {
@@ -102,11 +103,11 @@
 
     .hero-tagline {
       font-family: var(--font-body);
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 400;
       color: var(--color-warm-gray);
-      max-width: 480px;
-      line-height: 1.5;
+      max-width: 520px;
+      line-height: 1.6;
     }
 
     .hero-rule {
@@ -115,7 +116,7 @@
 
     /* --- Nav --- */
     nav {
-      padding: 1.25rem 0;
+      padding: 1.5rem 0;
       display: flex;
       gap: 2rem;
       flex-wrap: wrap;
@@ -126,13 +127,16 @@
       font-weight: 500;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--color-ink);
-      border-bottom: none;
+      color: var(--color-warm-gray);
+      border-bottom: 2px solid transparent;
+      padding-bottom: 0.25rem;
+      transition: color 0.2s ease, border-color 0.2s ease;
     }
 
-    nav a:hover {
-      color: var(--color-accent);
-      border-bottom: none;
+    nav a:hover,
+    nav a:focus {
+      color: var(--color-ink);
+      border-bottom-color: var(--color-accent);
     }
 
     .nav-rule {
@@ -146,7 +150,7 @@
 
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1.6fr;
+      grid-template-columns: 1.6fr 1fr;
       gap: 3rem;
       align-items: start;
     }
@@ -154,7 +158,7 @@
     .about-text {
       font-size: 1.05rem;
       line-height: 1.75;
-      color: var(--color-ink);
+      color: var(--color-ink-soft);
     }
 
     .about-text p + p {
@@ -168,7 +172,7 @@
     .about-aside dl {
       display: grid;
       grid-template-columns: auto 1fr;
-      gap: 0.5rem 1.5rem;
+      gap: 0.75rem 1.5rem;
     }
 
     .about-aside dt {
@@ -192,9 +196,9 @@
 
     .experience-item {
       display: grid;
-      grid-template-columns: 260px 1fr;
-      gap: 2rem;
-      padding: 2.5rem 0;
+      grid-template-columns: 280px 1fr;
+      gap: 3rem;
+      padding: 3rem 0;
       border-top: 1px solid var(--color-rule);
     }
 
@@ -233,7 +237,8 @@
     .exp-description {
       font-size: 0.95rem;
       line-height: 1.7;
-      color: #3a3632;
+      color: var(--color-ink-soft);
+      max-width: 640px;
     }
 
     .exp-description li {
@@ -258,9 +263,9 @@
 
     .edu-item {
       display: grid;
-      grid-template-columns: 260px 1fr;
-      gap: 2rem;
-      padding: 2rem 0;
+      grid-template-columns: 280px 1fr;
+      gap: 3rem;
+      padding: 2.5rem 0;
       border-top: 1px solid var(--color-rule);
     }
 
@@ -291,7 +296,8 @@
     .edu-details {
       font-size: 0.95rem;
       line-height: 1.7;
-      color: #3a3632;
+      color: var(--color-ink-soft);
+      max-width: 640px;
     }
 
     .edu-details ul {
@@ -336,13 +342,17 @@
 
     .footer-links {
       text-align: right;
-      padding-top: 2.5rem;
+      padding-top: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: flex-end;
     }
 
     .footer-links a {
       display: block;
       font-size: 0.95rem;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.5rem;
       color: var(--color-ink);
     }
 
@@ -352,8 +362,8 @@
 
     .footer-bottom {
       grid-column: 1 / -1;
-      margin-top: 3rem;
-      padding-top: 1.5rem;
+      margin-top: 2rem;
+      padding-top: 1rem;
       border-top: 1px solid var(--color-rule);
       font-size: 0.75rem;
       color: var(--color-warm-gray);
@@ -361,7 +371,7 @@
 
     /* --- Section spacing --- */
     .section-gap {
-      padding-top: 4rem;
+      padding-top: 5rem;
     }
 
     /* --- Pull quote style for the about --- */
@@ -384,7 +394,9 @@
     .stats-row {
       display: flex;
       gap: 3rem;
-      margin-top: 2rem;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--color-rule);
     }
 
     /* --- Responsive --- */
@@ -402,10 +414,6 @@
         gap: 2rem;
       }
 
-      .about-aside {
-        order: -1;
-      }
-
       .experience-item,
       .edu-item {
         grid-template-columns: 1fr;
@@ -419,6 +427,8 @@
       .footer-links {
         text-align: left;
         padding-top: 0;
+        align-items: flex-start;
+        justify-content: flex-start;
       }
 
       .stats-row {
@@ -432,6 +442,8 @@
       .nav-rule {
         margin-bottom: 3rem;
       }
+
+      .hero-name br { display: none; }
     }
 
     @media (max-width: 480px) {
@@ -460,6 +472,15 @@
         font-size: 1.5rem;
       }
     }
+
+    @media print {
+      body { background: white; }
+      .page { max-width: 100%; padding: 0; }
+      nav, .hero-rule, .nav-rule { display: none; }
+      a { color: var(--color-ink); border-bottom: none; }
+      .pull-stat { color: var(--color-ink); }
+      footer { page-break-before: avoid; }
+    }
   </style>
 </head>
 <body>
@@ -484,8 +505,12 @@
     <!-- About -->
     <main>
       <section class="about section-gap" id="about">
-        <p class="section-label">About</p>
+        <h2 class="section-label">About</h2>
         <div class="about-grid">
+          <div class="about-text">
+            <p>London-based economics undergraduate at UCL, graduating with first-class honours in the top 4% of the Economics cohort. Background spans equity research at China International Capital Corporation, audit work at Moore Stephens Da-Hua, and founding a content operation that reached over 10 million views.</p>
+            <p>Comfortable working across quantitative analysis, financial modelling, and data workflows&mdash;with hands-on experience in Python, Stata, and terminal-based data platforms including Wind, Refinitiv, and Bloomberg.</p>
+          </div>
           <div class="about-aside">
             <dl>
               <dt>Based in</dt>
@@ -508,10 +533,6 @@
               </div>
             </div>
           </div>
-          <div class="about-text">
-            <p>London-based economics undergraduate at UCL, graduating with first-class honours in the top 4% of the Economics cohort. Background spans equity research at China International Capital Corporation, audit work at Moore Stephens Da-Hua, and founding a content operation that reached over 10 million views.</p>
-            <p>Comfortable working across quantitative analysis, financial modelling, and data workflows&mdash;with hands-on experience in Python, Stata, and terminal-based data platforms including Wind, Refinitiv, and Bloomberg.</p>
-          </div>
         </div>
       </section>
 
@@ -519,7 +540,7 @@
 
       <!-- Experience -->
       <section class="experience section-gap" id="experience">
-        <p class="section-label">Experience</p>
+        <h2 class="section-label">Experience</h2>
 
         <article class="experience-item">
           <div class="exp-meta">
@@ -578,7 +599,7 @@
 
       <!-- Education -->
       <section class="education section-gap" id="education">
-        <p class="section-label">Education</p>
+        <h2 class="section-label">Education</h2>
 
         <article class="edu-item">
           <div>
@@ -622,7 +643,7 @@
       </div>
       <div class="footer-links">
         <a href="mailto:ambrose.wang04@outlook.com">ambrose.wang04@outlook.com</a>
-        <a href="tel:+4407436637461">+44 07436637461</a>
+        <a href="tel:+447436637461">+44 7436 637 461</a>
       </div>
       <div class="footer-bottom">
         &copy; 2026 Jiayi (Ambrose) Wang
